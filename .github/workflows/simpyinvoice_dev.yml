@@ -29,4 +29,4 @@ jobs:
         pipenv install --dev
     - name: Run Tests
       run: |
-        pipenv run python -m pytest -v -m "unit_test"
+        pipenv run python -m pytest -v -m "not integration_test"
