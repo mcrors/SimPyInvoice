@@ -26,6 +26,9 @@ jobs:
     - name: Install dependencies
       run: |
         pipenv install
+    - name: Activate virtual env
+      run: |
+        pipenv shell
     - name: Run Tests
       run: |
         pytest
