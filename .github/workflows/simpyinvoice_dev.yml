@@ -25,8 +25,8 @@ jobs:
         pip install pipenv
     - name: Install dependencies
       run: |
-        pipenv lock -r
-        pipenv lock -r --dev
+        pipenv install
+        pipenv install --dev
     - name: Run Tests
       run: |
         pipenv run python -m pytest
