@@ -12,10 +12,10 @@ class TestBlueprintsShould:
         assert isinstance(auth, Blueprint)
 
     @pytest.mark.parametrize("blueprint_instance", [
-        ("main",),
-        ("auth",)
+        ("main"),
+        ("auth")
     ])
     def test_main_blueprint_is_registered(self, blueprint_instance):
         app = create_app("test")
-        blueprint = app.blueprints.get(blueprint_instance)
+        blueprint = app.blueprints[blueprint_instance]
         assert blueprint

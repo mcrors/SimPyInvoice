@@ -4,7 +4,6 @@ import os
 class Configuration:
     SECRET_KEY = os.environ.get("SIMPYINVOICE_SECRET_KEY")
 
-
 class ProdConfiguration(Configuration):
     pass
 

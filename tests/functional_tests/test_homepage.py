@@ -1,21 +1,14 @@
-import os
-import tempfile
-import pytest
-from simpyinvoice import create_app
-
-
-@pytest.fixture()
-def client():
-    app = create_app('test')
-    client = app.test_client()
-    app_cntxt = app.app_context()
-    app_cntxt.push()
-    yield client
-    app_cntxt.pop()
-
-
 class TestHomepageShould:
 
-    def test_redirects_to_login_page(self, client):
+    # The User enters the website address and arrives at the home page
+    @staticmethod
+    def test_redirects_to_login_page(client):
         response = client.get("/")
-        assert response.status_code == 302
+        assert response.status_code == 200
+
+    # She notices that the title of the website is SimPyInvoice
+    @staticmethod
+    def test_website_title(client):
+        response = client.get("/")
+        html = response.get_date()
+        assert "<title>SimPyInvoice</title>" in html
