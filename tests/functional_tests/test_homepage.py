@@ -2,7 +2,7 @@ class TestHomepageShould:
 
     # The User enters the website address and arrives at the home page
     @staticmethod
-    def test_redirects_to_login_page(client):
+    def test_succesfully_reach_home_page(client):
         response = client.get("/")
         assert response.status_code == 200
 

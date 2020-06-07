@@ -1,5 +1,5 @@
 from mock import patch
-from simpyinvoice.main import views
+from app.main import views
 
 
 class TestMainViewsShould:

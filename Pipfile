@@ -8,6 +8,7 @@ pytest = "*"
 mock = "*"
 rope = "*"
 pylint = "*"
+pytest-env = "*"
 
 [packages]
 flask = "*"

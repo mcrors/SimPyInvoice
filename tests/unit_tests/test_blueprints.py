@@ -1,8 +1,8 @@
 from flask import Blueprint
 import pytest
-from simpyinvoice import create_app
-from simpyinvoice.main import main
-from simpyinvoice.auth import auth
+from app import create_app
+from app.main import main
+from app.auth import auth
 
 
 class TestBlueprintsShould:

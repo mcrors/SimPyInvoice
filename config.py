@@ -10,6 +10,7 @@ class ProdConfiguration(Configuration):
 
 class TestConfiguration(Configuration):
     TESTING = True
+    DEBUG = True
 
 
 class DevConfiguration(Configuration):

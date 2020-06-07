@@ -1,9 +1,11 @@
-from flask import Flask
-from simpyinvoice import create_app
+import os
+from flask import Flask, current_app
+from app import create_app
 
 
 class TestSimPyInvoiceShould:
 
-    def test_create_flask_app(self):
-        app = create_app('test')
-        assert isinstance(app, Flask)
+    @staticmethod
+    def test_create_flask_app(simpyinvoice_app):
+        assert isinstance(simpyinvoice_app, Flask)
+        assert current_app.name == 'simpyinvoice'

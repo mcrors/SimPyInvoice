@@ -1,5 +1,5 @@
 import pytest
-from simpyinvoice import create_app
+from app import create_app
 
 
 # @pytest.fixture(scope='session')
@@ -9,6 +9,15 @@ from simpyinvoice import create_app
 #     app_dir = os.path.join(parentdir, "simpyinvoice")
 #     if app_dir not in os.sys.path:
 #         os.sys.path.extend([app_dir])
+
+
+@pytest.fixture()
+def simpyinvoice_app():
+    app = create_app('test')
+    app_cntxt = app.app_context()
+    app_cntxt.push()
+    yield app
+    app_cntxt.pop()
 
 
 @pytest.fixture()
