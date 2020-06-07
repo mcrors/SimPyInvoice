@@ -1,9 +1,10 @@
+import os
 from flask import Flask
 from config import config_dict
 
 
 def create_app(config_name):
-    app = Flask(__name__)
+    app = Flask(os.environ.get('APP_NAME'))
     app.config.from_object(config_dict[config_name])
 
     register_blueprints(app)
