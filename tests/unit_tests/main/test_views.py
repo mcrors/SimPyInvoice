@@ -10,3 +10,4 @@ class TestMainViewsShould:
         views.index()
         mock_url_for.assert_called_with("auth.login")
         mock_redirect.assert_called_once()
+        assert False, "Rework test: Determine what index should do"
