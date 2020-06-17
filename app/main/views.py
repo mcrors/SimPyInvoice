@@ -5,4 +5,4 @@ from . import main
 @main.route("/")
 @main.route("/index")
 def index():
-    return redirect(url_for("auth.login"))
+    return Response("<HTML>Hi</HTML>")
