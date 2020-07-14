@@ -2,7 +2,7 @@ from flask import Response, redirect, render_template, url_for
 from . import main
 
 
-@main.route("/")
-@main.route("/index")
+@main.route('/')
+@main.route('/index')
 def index():
-    return Response("<HTML>Hi</HTML>")
+    return render_template('home.html')

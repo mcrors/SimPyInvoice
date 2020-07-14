@@ -4,6 +4,10 @@ from app.main import views
 
 class TestMainViewsShould:
 
-    def test_index_redirects_and_renders_home(self):
-        views.index()
-        assert False, "Rework test: Determine what index should do"
+    @staticmethod
+    def test_index_redirects_to_login_page_if_user_is_not_signed_in():
+        assert False, 'To be impletmented'
+
+    @staticmethod
+    def test_index_redirects_to_users_homepage_if_user_is_signed_in():
+        assert False, 'To be impletmented'

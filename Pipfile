@@ -12,6 +12,14 @@ pytest-env = "*"
 
 [packages]
 flask = "*"
+jinja2 = "*"
+flask-bootstrap = "*"
+flask-mail = "*"
+flask-sqlalchemy = "*"
+werkzeug = "*"
+flask-login = "*"
+itsdangerous = "*"
+flask-migrate = "*"
 
 [requires]
 python_version = "3.7"

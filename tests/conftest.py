@@ -1,14 +1,15 @@
+import os
+import inspect
 import pytest
 from app import create_app
 
 
-# @pytest.fixture(scope='session')
-# def add_app_to_sys_path():
-#     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-#     parentdir = os.path.dirname(currentdir)
-#     app_dir = os.path.join(parentdir, "simpyinvoice")
-#     if app_dir not in os.sys.path:
-#         os.sys.path.extend([app_dir])
+@pytest.fixture(scope='session')
+def app_dir():
+    currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    parentdir = os.path.dirname(currentdir)
+    flask_app_dir = os.path.join(parentdir, "app")
+    return flask_app_dir
 
 
 @pytest.fixture()

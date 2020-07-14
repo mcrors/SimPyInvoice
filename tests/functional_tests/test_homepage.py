@@ -10,25 +10,5 @@ class TestHomepageShould:
     @staticmethod
     def test_website_title(client):
         response = client.get("/")
-        html = response.get_date()
-        assert "<title>SimPyInvoice</title>" in html
-
-    # She sees that see is invited to log in or to sign up
-    @staticmethod
-    def test_contains_sign_up_option():
-        pass
-
-    @staticmethod
-    def test_contains_log_in_form():
-        pass
-
-    # She is not a user and so clicks on the sign up link
-    @staticmethod
-    def test_sign_up_takes_user_to_registration_page():
-        pass
-
-    # She is a user and so enters her username and password and is taken to her homepage
-    @staticmethod
-    def test_log_in_form_submit_takes_user_to_homepage():
-        pass
-
+        html = response.get_data()
+        assert b"<title>Home - SimpyInvoice</title>" in html
