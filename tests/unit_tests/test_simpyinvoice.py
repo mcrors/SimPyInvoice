@@ -10,7 +10,7 @@ class TestSimPyInvoiceShould:
 
     @staticmethod
     def test_app_includes_correct_extensions(simpyinvoice_app):
-        expected_extensions = ['bootstrap', 'mail', 'sqlalchemy', 'nav_renderers']
+        expected_extensions = ['bootstrap', 'mail', 'sqlalchemy', 'nav_renderers', 'migrate', 'wtf']
         actual_extensions = list(simpyinvoice_app.extensions.keys())
         expected_extensions.sort()
         actual_extensions.sort()

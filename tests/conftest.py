@@ -1,7 +1,7 @@
 import os
 import inspect
 import pytest
-from app import create_app
+from app import create_app, db
 
 
 @pytest.fixture(scope='session')
@@ -17,7 +17,10 @@ def simpyinvoice_app():
     app = create_app('test')
     app_cntxt = app.app_context()
     app_cntxt.push()
+    db.create_all()
     yield app
+    db.session.remove()
+    db.drop_all()
     app_cntxt.pop()
 
 
@@ -27,5 +30,8 @@ def client():
     testing_client = app.test_client()
     app_cntxt = app.app_context()
     app_cntxt.push()
+    db.create_all()
     yield testing_client
+    db.session.remove()
+    db.drop_all()
     app_cntxt.pop()
