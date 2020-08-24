@@ -22,7 +22,7 @@ class TestUserShould:
         assert user.verify_password('dog') is False
 
     @staticmethod
-    def test_password_salds_are_random():
+    def test_password_salts_are_random():
         user1 = User(password='cat')
         user2 = User(password='cat')
         assert user1.password_hash != user2.password_hash

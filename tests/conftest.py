@@ -2,6 +2,7 @@ import os
 import inspect
 import pytest
 from app import create_app, db
+from app.models import User
 
 
 @pytest.fixture(scope='session')
@@ -35,3 +36,15 @@ def client():
     db.session.remove()
     db.drop_all()
     app_cntxt.pop()
+
+
+@pytest.fixture()
+def db_with_one_user(simpyinvoice_app):
+    user = User(email='sir.lancelot@camolot.com',
+                username='sir_lancelot',
+                first_name='lancelot',
+                last_name='camolot')
+    user.password = 'blue_no_yellow'
+    db.session.add(user)
+    db.session.commit()
+    return db
