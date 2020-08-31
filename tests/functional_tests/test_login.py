@@ -2,8 +2,8 @@ class TestLoginShould:
 
     # The User arrives at the Login page
     @staticmethod
-    def test_succesfully_reach_login_page(client):
-        response = client.get('/auth/login')
+    def test_succesfully_reach_login_page(simpyinvoice_client):
+        response = simpyinvoice_client.get('/auth/login')
         assert response.status_code == 200
 #
 #     # She sees that see is invited to log in or to sign up

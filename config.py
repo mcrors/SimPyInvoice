@@ -14,9 +14,11 @@ class ProdConfiguration(Configuration):
 
 
 class TestConfiguration(Configuration):
+    WTF_CSRF_ENABLED = False
     TESTING = True
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URI') or 'sqlite:///'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URI') or \
+                              'sqlite:///' + os.path.join(basedir, 'test-data.sqlite')
 
 
 class DevConfiguration(Configuration):

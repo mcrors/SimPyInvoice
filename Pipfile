@@ -11,6 +11,7 @@ pytest-env = "*"
 python-dotenv = "*"
 pytest-cov = "*"
 flake8 = "*"
+selenium = "*"
 
 [packages]
 flask = "*"
