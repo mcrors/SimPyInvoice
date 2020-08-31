@@ -76,3 +76,12 @@ def flask_test_server():
     server_process.start()
     yield
     server_process.kill()
+
+
+@pytest.fixture()
+def logged_in_user(simpyinvoice_client, db_with_one_user, a_test_user):
+    simpyinvoice_client.post('/auth/login', data={
+        'email': a_test_user['email'],
+        'password': a_test_user['password']
+    })
+    yield
