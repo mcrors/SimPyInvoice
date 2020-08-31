@@ -25,7 +25,7 @@ class TestTemplatesShould:
     def test_all_templates_use_base_html(templates_dir):
         expected_text = '{% extends "base.html" %}'
         for file in templates_dir.iterdir():
-            if file.name != 'base.html':
-                with open(file, 'r') as f:
+            if file.name != 'base.html' and file.suffix == '.html':
+                with open(file, "r") as f:
                     contents = f.read()
                     assert expected_text in contents, f'base.html not in file {file}'

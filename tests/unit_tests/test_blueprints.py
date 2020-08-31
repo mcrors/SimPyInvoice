@@ -16,6 +16,7 @@ class TestBlueprintsShould:
         "main",
         "auth"
     ])
+
     def test_main_blueprint_is_registered(self, blueprint_instance):
         app = create_app("test")
         blueprint = app.blueprints[blueprint_instance]
