@@ -25,6 +25,7 @@ itsdangerous = "*"
 flask-migrate = "*"
 flask-wtf = "*"
 email-validator = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

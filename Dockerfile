@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.6-alpine
 
 ENV FLASK_APP simpyinvoice.py
 ENV APP_NAME simpyinvoice
@@ -6,18 +6,19 @@ ENV FLASK_CONFIG test
 ENV SIMPYINVOICE_SECRET_KEY TA2l6XTGWtajkNjybhyRLdtSMaJweAph
 ENV FLASK_ENV testing
 
-WORKDIR /home
+RUN adduser -D simpy
+USER simpy
 
-COPY Pipfile Pipfile
-RUN pip install pipenv \
-    && pipenv lock --requirements > requirements.txt \
-    && pip install -r requirements.txt
+WORKDIR /home/simpy
+
+COPY requirements.txt requirements.txt
+RUN  python -m venv venv
+RUN  venv/bin/pip install -r requirements.txt
 
 COPY app app
 COPY migrations migrations
+COPY templates templates
 COPY simpyinvoice.py config.py test_boot.sh ./
 
-RUN flask db upgrade
-
 EXPOSE 5000
-CMD flask run
+ENTRYPOINT ["sh", "test_boot.sh"]

@@ -1,8 +1,7 @@
 import os
 import inspect
-import multiprocessing
 import pytest
-from app import create_app, db
+from app import create_app
 from app.models import User
 
 
@@ -17,7 +16,7 @@ def a_test_user():
     }
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture()
 def app_dir():
     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     parentdir = os.path.dirname(currentdir)
@@ -25,8 +24,9 @@ def app_dir():
     return flask_app_dir
 
 
-@pytest.fixture()
+@pytest.fixture(scope='session')
 def app():
+    from app import db
     simpy_invoice_app = create_app('test')
     app_cntxt = simpy_invoice_app.app_context()
     app_cntxt.push()
@@ -39,6 +39,7 @@ def app():
 
 @pytest.fixture()
 def simpyinvoice_client():
+    from app import db
     simpy_invoice_app = create_app('test')
     testing_client = simpy_invoice_app.test_client(use_cookies=True)
     app_cntxt = simpy_invoice_app.app_context()
@@ -52,6 +53,7 @@ def simpyinvoice_client():
 
 @pytest.fixture()
 def db_with_one_user(app, a_test_user):
+    from app import db
     user = User(email=a_test_user['email'],
                 username=a_test_user['username'],
                 first_name=a_test_user['first_name'],
@@ -60,22 +62,6 @@ def db_with_one_user(app, a_test_user):
     db.session.add(user)
     db.session.commit()
     return db
-
-
-def start_server():
-    simpy_invoice_app = create_app('test')
-    app_cntxt = simpy_invoice_app.app_context()
-    app_cntxt.push()
-    db.create_all()
-    simpy_invoice_app.run(use_reloader=False)
-
-
-@pytest.fixture()
-def flask_test_server():
-    server_process = multiprocessing.Process(target=start_server)
-    server_process.start()
-    yield
-    server_process.kill()
 
 
 @pytest.fixture()
