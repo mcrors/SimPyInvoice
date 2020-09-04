@@ -1,9 +1,6 @@
 name: simpyinvoice_dev
 
-on: 
-  push:
-    branches: 
-      - develop
+on: push
 
 env:
   FLASK_APP: simpyinvoice.py
@@ -13,7 +10,7 @@ env:
   SIMPYINVOICE_SECRET_KEY: ${{ secrets.SIMPYINVOICE_SECRET_KEY }}
 
 jobs:
-  unit_tests:
+  tests:
 
     runs-on: ubuntu-latest
 
@@ -33,6 +30,12 @@ jobs:
     - name: Deploy Database Changes
       run: |
         flask db upgrade
-    - name: Run Tests
+    - name: Unit Tests
       run: |
         pytest -vv -k "unit_tests"
+    - name: Integration Tests
+      run: |
+        pytest -vv -k "integration_tests"
+    - name: Functional Tests
+      run: |
+        pytest -vv -k "functional_tests"
