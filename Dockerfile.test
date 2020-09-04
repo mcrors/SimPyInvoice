@@ -11,9 +11,10 @@ USER simpy
 
 WORKDIR /home/simpy
 
-COPY requirements requirement
+COPY requirements requirements
 RUN  python -m venv venv
-RUN  venv/bin/pip install -r ./requirements/dev.txt
+RUN  venv/bin/pip install --upgrade pip
+RUN  venv/bin/pip install -r requirements/common.txt
 
 COPY app app
 COPY migrations migrations
