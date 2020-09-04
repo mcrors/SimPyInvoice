@@ -24,7 +24,7 @@ def app_dir():
     return flask_app_dir
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture()
 def app():
     from app import db
     simpy_invoice_app = create_app('test')
