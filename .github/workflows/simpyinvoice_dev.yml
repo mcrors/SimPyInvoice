@@ -25,6 +25,8 @@ jobs:
         pip install -r requirements.txt
     - name: Deploy Database Changes
       run: |
+        flask db init
+        flask db migrate
         flask db upgrade
     - name: Run Tests
       run: |
