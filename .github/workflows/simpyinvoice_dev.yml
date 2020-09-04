@@ -5,6 +5,13 @@ on:
     branches: 
       - develop
 
+env:
+  FLASK_APP: simpyinvoice.py
+  APP_NAME: simpyinvoice
+  FLASK_CONFIG: test
+  FLASK_ENV: testing
+  SIMPYINVOICE_SECRET_KEY: ${{ secrets.SIMPYINVOICE_SECRET_KEY }}
+
 jobs:
   unit_tests:
 
@@ -25,8 +32,6 @@ jobs:
         pip install -r requirements.txt
     - name: Deploy Database Changes
       run: |
-        flask db init
-        flask db migrate
         flask db upgrade
     - name: Run Tests
       run: |
