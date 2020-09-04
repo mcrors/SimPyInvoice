@@ -1,21 +1,34 @@
+from pathlib import Path
 import subprocess
 import time
 from selenium import webdriver
 import pytest
+import docker
 
 
 @pytest.fixture()
 def firefox_browser():
     options = webdriver.FirefoxOptions()
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     browser = webdriver.Firefox(options=options)
     yield browser
     browser.quit()
 
 
-@pytest.fixture(scope='module', autouse=True)
-def flask_test_server():
-    server = subprocess.Popen(['flask', 'run', '--port', '5000', '--no-reload', '--no-debugger'])
+@pytest.fixture()
+def simpy_test_container(app_dir):
+    docker_context = str(Path(app_dir).parent)
+    docker_client = docker.from_env()
+    docker_client.images.build(path=docker_context,
+                               rm=True,
+                               tag='simpyinvoice:test',
+                               dockerfile='Dockerfile.test')
+    container = docker_client.containers.run('simpyinvoice:test',
+                                             name='simpyinvoice',
+                                             detach=True,
+                                             ports={'5000': '5000'})
     time.sleep(5)
-    yield server
-    server.terminate()
+    yield
+    container.kill()
+    container.remove()
+

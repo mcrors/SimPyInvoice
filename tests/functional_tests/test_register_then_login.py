@@ -1,8 +1,4 @@
-import threading
-from app import db, create_app
-
-
-def test_user_can_register_and_then_login(flask_test_server, firefox_browser):
+def test_user_can_register_and_then_login(simpy_test_container, firefox_browser):
     # Edith has heard about a new app to help manage her invoices
     # She opens a browser and navigates to the registration page
     firefox_browser.get('http://127.0.0.1:5000/')

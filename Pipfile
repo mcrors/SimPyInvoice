@@ -26,6 +26,7 @@ flask-migrate = "*"
 flask-wtf = "*"
 email-validator = "*"
 python-dotenv = "*"
+docker = "*"
 
 [requires]
 python_version = "3.7"

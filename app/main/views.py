@@ -2,6 +2,7 @@ import time
 from flask import render_template, current_app, abort, request
 from flask_login import login_required, current_user
 from . import main
+from app import db
 
 
 @main.route('/')
