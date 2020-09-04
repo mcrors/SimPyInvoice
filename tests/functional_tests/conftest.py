@@ -1,5 +1,4 @@
 from pathlib import Path
-import subprocess
 import time
 from selenium import webdriver
 import pytest
