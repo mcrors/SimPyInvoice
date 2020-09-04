@@ -1,0 +1,29 @@
+{
+    "python.pythonPath": "C:\\Users\\e10111358\\.virtualenvs\\SimPyInvoice-cSENVc_j\\Scripts\\python.exe",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.ignorePaths": [".vscode/*.py", "**/site-packages/**/*.py", "tests/**/*.py"],
+    "python.linting.pylintCategorySeverity.convention":"Warning",
+    "python.linting.pylintCategorySeverity.refactor": "Hint",
+    "python.linting.pylintCategorySeverity.warning": "Warning",
+    "python.linting.pylintCategorySeverity.error": "Error",
+    "python.linting.pylintCategorySeverity.fatal": "Error",
+    "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\cmd.exe",
+    "terminal.integrated.shellArgs.windows": [
+        "/k C:\\Cmder\\vendor\\init.bat"
+    ],
+    "python.linting.pylintPath": "C:\\Users\\e10111358\\.virtualenvs\\SimPyInvoice-cSENVc_j\\Scripts\\pylint.exe",
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    }
+}

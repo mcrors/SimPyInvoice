@@ -1,0 +1,46 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} SimpyInvoice {% endblock title %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar">Item 1</span>
+                <span class="icon-bar">Item 2</span>
+                <span class="icon-bar">Item 3</span>
+            </button>
+            <a class="navbar-brand" href="/">SimpyInvoice</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            {% if current_user.is_authenticated %}
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="logout" href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="register" href="{{ url_for('auth.register') }}">Register</a></li>
+                </ul>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock navbar %}
+{% block content %}
+    <div class="container">
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% block page_content %}{% endblock %}
+    </div>
+{% endblock content %}
+
+

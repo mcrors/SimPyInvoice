@@ -1,0 +1,32 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+mock = "*"
+rope = "*"
+pytest-env = "*"
+python-dotenv = "*"
+pytest-cov = "*"
+flake8 = "*"
+selenium = "*"
+
+[packages]
+flask = "*"
+jinja2 = "*"
+flask-bootstrap = "*"
+flask-mail = "*"
+flask-sqlalchemy = "*"
+werkzeug = "*"
+flask-login = "*"
+itsdangerous = "*"
+flask-migrate = "*"
+flask-wtf = "*"
+email-validator = "*"
+python-dotenv = "*"
+docker = "*"
+
+[requires]
+python_version = "3.7"

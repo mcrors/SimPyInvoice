@@ -1,0 +1,25 @@
+FROM python:3.6-alpine
+
+ENV FLASK_APP simpyinvoice.py
+ENV APP_NAME simpyinvoice
+ENV FLASK_CONFIG test
+ENV SIMPYINVOICE_SECRET_KEY TA2l6XTGWtajkNjybhyRLdtSMaJweAph
+ENV FLASK_ENV testing
+
+RUN adduser -D simpy
+USER simpy
+
+WORKDIR /home/simpy
+
+COPY requirements requirements
+RUN  python -m venv venv
+RUN  venv/bin/pip install --upgrade pip
+RUN  venv/bin/pip install -r requirements/common.txt
+
+COPY app app
+COPY migrations migrations
+COPY templates templates
+COPY simpyinvoice.py config.py test_boot.sh ./
+
+EXPOSE 5000
+ENTRYPOINT ["sh", "test_boot.sh"]
