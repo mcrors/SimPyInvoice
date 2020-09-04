@@ -1,4 +1,4 @@
-def test_user_can_register_and_then_login(simpy_test_container, firefox_browser):
+def test_user_can_register_and_then_login_then_logout(simpy_test_container, firefox_browser):
     # Edith has heard about a new app to help manage her invoices
     # She opens a browser and navigates to the registration page
     firefox_browser.get('http://127.0.0.1:5000/')
@@ -44,3 +44,8 @@ def test_user_can_register_and_then_login(simpy_test_container, firefox_browser)
 
     welcome_header_elem = firefox_browser.find_element_by_id('welcome')
     assert 'Welcome back Edith' in welcome_header_elem.text
+
+    logout_link = firefox_browser.find_element_by_id('logout')
+    logout_link.click()
+
+    assert 'Login' in firefox_browser.title
