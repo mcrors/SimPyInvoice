@@ -106,5 +106,4 @@ venv.bak/
 # pycharm stuff
 **/.idea
 /dev-data.sqlite
-/migrations/
 /test-data.sqlite
