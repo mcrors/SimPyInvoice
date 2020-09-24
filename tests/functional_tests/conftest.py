@@ -4,6 +4,8 @@ from selenium import webdriver
 import pytest
 import docker
 
+from tests.functional_tests.func_test_utils import register_via_browser, login_via_browser
+
 
 @pytest.fixture()
 def firefox_browser():
@@ -31,3 +33,21 @@ def simpy_test_container(app_dir):
     container.kill()
     container.remove()
 
+
+@pytest.fixture()
+def register_and_login(firefox_browser, simpy_test_container):
+    arthur = {
+        'first_name': 'Arthur',
+        'last_name': 'Camalot',
+        'username': 'arthur',
+        'email': 'arthur@camalot.com',
+        'password': '123456789'
+    }
+    register_via_browser(firefox_browser,
+                         arthur['first_name'],
+                         arthur['last_name'],
+                         arthur['username'],
+                         arthur['email'],
+                         arthur['password'])
+    login_via_browser(firefox_browser, arthur['email'], arthur['password'])
+    yield

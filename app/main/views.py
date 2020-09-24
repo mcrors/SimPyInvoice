@@ -12,6 +12,10 @@ def index():
     return render_template('home.html', user=current_user)
 
 
+@main.route('/client/add', methods=['GET', 'POST'])
+def add_client():
+    pass
+
 @main.route('/shutdown')
 def server_shutdown():
     if not current_app.testing:

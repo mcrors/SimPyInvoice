@@ -1,0 +1,26 @@
+def register_via_browser(firefox_browser, first_name, last_name, username, email, password):
+    firefox_browser.get('http://127.0.0.1:5000/auth/register')
+    first_name_input_elem = firefox_browser.find_element_by_id('first_name')
+    first_name_input_elem.send_keys(first_name)
+    last_name_input_elem = firefox_browser.find_element_by_id('last_name')
+    last_name_input_elem.send_keys(last_name)
+    username_input_elem = firefox_browser.find_element_by_id('username')
+    username_input_elem.send_keys(username)
+    email_input_elem = firefox_browser.find_element_by_id('email')
+    email_input_elem.send_keys(email)
+    password_input_elem = firefox_browser.find_element_by_id('password')
+    password_input_elem.send_keys(password)
+    confirm_password_input_elem = firefox_browser.find_element_by_id('password_2')
+    confirm_password_input_elem.send_keys(password)
+    register_elem = firefox_browser.find_element_by_id('submit')
+    register_elem.click()
+
+
+def login_via_browser(firefox_browser, email, password):
+    firefox_browser.get('http://127.0.0.1:5000/auth/login')
+    email_input_elem = firefox_browser.find_element_by_id('email')
+    email_input_elem.send_keys(email)
+    password_input_elem = firefox_browser.find_element_by_id('password')
+    password_input_elem.send_keys(password)
+    register_elem = firefox_browser.find_element_by_id('submit')
+    register_elem.click()

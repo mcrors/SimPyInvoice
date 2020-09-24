@@ -1,3 +1,6 @@
+from tests.functional_tests.func_test_utils import register_via_browser, login_via_browser
+
+
 def test_user_can_register_and_then_login_then_logout(simpy_test_container, firefox_browser):
     # Edith has heard about a new app to help manage her invoices
     # She opens a browser and navigates to the registration page
@@ -14,33 +17,24 @@ def test_user_can_register_and_then_login_then_logout(simpy_test_container, fire
 
     assert 'Register' in firefox_browser.title
 
-    # She enters in her details into the registration form
-    first_name_input_elem = firefox_browser.find_element_by_id('first_name')
-    first_name_input_elem.send_keys('Edith')
-    last_name_input_elem = firefox_browser.find_element_by_id('last_name')
-    last_name_input_elem.send_keys('Jones')
-    username_input_elem = firefox_browser.find_element_by_id('username')
-    username_input_elem.send_keys('edith_jones')
-    email_input_elem = firefox_browser.find_element_by_id('email')
-    email_input_elem.send_keys('edith@jones.com')
-    password_input_elem = firefox_browser.find_element_by_id('password')
-    password_input_elem.send_keys('123456789')
-    confirm_password_input_elem = firefox_browser.find_element_by_id('password_2')
-    confirm_password_input_elem.send_keys('123456789')
+    edith = {
+        'first_name': 'Edith',
+        'last_name': 'Jones',
+        'username': 'edith_jones',
+        'email': 'edith@jones.com',
+        'password': '123456789'
+    }
 
-    # She hits the register button and is redirected to the login page
-    register_elem = firefox_browser.find_element_by_id('submit')
-    register_elem.click()
+    register_via_browser(firefox_browser,
+                         edith['first_name'],
+                         edith['last_name'],
+                         edith['username'],
+                         edith['email'],
+                         edith['password'])
 
     assert 'Login' in firefox_browser.title
 
-    # She logs into the website with her newly created account
-    email_input_elem = firefox_browser.find_element_by_id('email')
-    email_input_elem.send_keys('edith@jones.com')
-    password_input_elem = firefox_browser.find_element_by_id('password')
-    password_input_elem.send_keys('123456789')
-    register_elem = firefox_browser.find_element_by_id('submit')
-    register_elem.click()
+    login_via_browser(firefox_browser, edith['email'], edith['password'])
 
     welcome_header_elem = firefox_browser.find_element_by_id('welcome')
     assert 'Welcome back Edith' in welcome_header_elem.text
