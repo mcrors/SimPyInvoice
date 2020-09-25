@@ -1,6 +1,7 @@
 import os
 import inspect
 import pytest
+from flask import template_rendered
 from app import create_app
 from app.models import User
 
@@ -71,3 +72,17 @@ def logged_in_user(simpyinvoice_client, db_with_one_user, a_test_user):
         'password': a_test_user['password']
     })
     yield
+
+
+@pytest.fixture
+def captured_templates(app):
+    recorded = []
+
+    def record(sender, template, context, **extra):
+        recorded.append((template, context))
+
+    template_rendered.connect(record, app)
+    try:
+        yield recorded
+    finally:
+        template_rendered.disconnect(record, app)
