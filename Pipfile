@@ -12,6 +12,7 @@ python-dotenv = "*"
 pytest-cov = "*"
 flake8 = "*"
 selenium = "*"
+black = "*"
 
 [packages]
 flask = "*"
@@ -30,3 +31,6 @@ docker = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true

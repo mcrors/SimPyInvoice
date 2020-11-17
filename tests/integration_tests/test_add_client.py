@@ -2,6 +2,7 @@ from flask import template_rendered
 import pytest
 from app.models import Client
 
+
 @pytest.fixture()
 def client_data():
     return {
@@ -10,10 +11,13 @@ def client_data():
             "contact_email": "batman@supercorp.com"
         }
 
+
 class TestAddClientShould:
 
     @staticmethod
-    def test_is_directed_to_correct_page(simpyinvoice_client, logged_in_user, captured_templates):
+    def test_is_directed_to_correct_page(simpyinvoice_client, 
+                                         logged_in_user, 
+                                         captured_templates):
         response = simpyinvoice_client.get('/client/add')
 
         assert response.status_code == 200
