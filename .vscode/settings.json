@@ -1,7 +1,6 @@
 {
     "workbench.colorTheme": "Monokai Dimmed",
     "python.terminal.activateEnvironment": true,
-    "python.pythonPath": "C:\\Users\\e10111358\\.virtualenvs\\SimPyInvoice-cSENVc_j\\Scripts\\python.exe",
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.pycodestyleEnabled": true,
